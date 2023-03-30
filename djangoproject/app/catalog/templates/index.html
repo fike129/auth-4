@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Local Library</h1>
+
+    <p>Welcome to our django project</p>
+
+    <h2>Dynamic Content</h2>
+
+    <p><b>Books: </b>{{num_books}}</p>
+    <p><b>Authors: </b>{{num_authors}}</p>
+    <p><b>Books Instances: </b>{{num_instances}}</p>
+    <p><b>Books Available: </b>{{num_instances_available}}</p>
+
+    <p>You have been visited this page {{num_visits}} {% if num_visits == 1 %}time{% else %}times{% endif %}</p>
+{% endblock %}

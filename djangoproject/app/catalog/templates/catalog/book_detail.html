@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Title: {{book.title}}</h1>
+
+    <p><b>Author: </b> {% for author in book.author.all %} <a href="{{author.get_absolute_url}}">{{author}}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</p>
+    <p><b>Summary: </b>{{book.summary}}</p>
+    <p><b>Genre: </b> {% for genre in book.genre.all %}{{genre}}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    <p><b>ISBN: </b> {{book.ISBN}}</p>
+    <p><b>Language: </b> {{book.language}}</p>
+
+    <div style="margin-top:20px; margin-left:20px;">
+        <h4>Copies</h4>>
+        {% for copy in book.bookinstance_set.all %}
+            <hr>
+            <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'r' %}text-danger{% else %}text-warning{% endif %}">
+                {{copy.get_status_display}}
+            </p>
+        <p><b>Due back: </b>{{copy.due_back}}</p>
+        <p><b>ID: </b>{{copy.id}}</p>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}
